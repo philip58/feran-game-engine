@@ -23,9 +23,14 @@ namespace fr
 	template<typename T>
 	void fr::FeranApp<T>::Run()
 	{
+		mWindow.Create("Game PF", 1000, 800);
+
 		while (mShouldContinue)
 		{
 			OnUpdate();
+
+			mWindow.SwapBuffers();
+			mWindow.PollEvents();
 		}
 	}
 	template<typename T>

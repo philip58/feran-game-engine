@@ -1,0 +1,10 @@
+^C:\USERS\PHILI\ONEDRIVE\DOCUMENTS\CPP_PROJECTS\GAME_PF\GLFW\SRC\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/phili/OneDrive/Documents/CPP_Projects/Game_PF/glfw -BC:/Users/phili/OneDrive/Documents/CPP_Projects/Game_PF/glfw_proj --check-stamp-file C:/Users/phili/OneDrive/Documents/CPP_Projects/Game_PF/glfw_proj/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

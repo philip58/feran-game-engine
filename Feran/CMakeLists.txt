@@ -5,19 +5,16 @@ set(HEADER_FILES
 )
 
 set(SOURCE_FILES
+	placeholder.cpp
 )
 
 add_definitions(-DFR_DEBUG=2)
 add_definitions(-DFERAN_LIB)
 
-if(WIN32)
-	add_definitions(-DFERAN_MSCPP)
-elseif(LINUX)
-	add_definitions(-DFERAN_LINUX)
-elseif(APPLE)
-	add_definitions(-DFERAN_APPLE)
-endif()
+include_directories(../glfw/include)
 
 add_library(Feran SHARED ${HEADER_FILES} ${SOURCE_FILES}) 
 
 target_precompile_headers(Feran PRIVATE pch.h)
+
+target_link_libraries(Feran glfw)

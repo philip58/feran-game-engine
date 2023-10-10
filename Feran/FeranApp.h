@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Utilities.h"
+#include"GameWindow.h"
 
 namespace fr
 {
 	template<typename T>
-	class FERAN_API FeranApp
+	class FeranApp
 	{
 	public:
 		static void Init();
@@ -20,6 +21,8 @@ namespace fr
 		FeranApp();
 
 		inline static FeranApp* sInstance{ nullptr };
+
+		GameWindow mWindow;
 
 		bool mShouldContinue{ true };
 	};
