@@ -1,4 +1,0 @@
-C:/Users/phili/OneDrive/Documents/CPP_Projects/Game_PF/glfw_proj/CMakeFiles/ALL_BUILD.dir
-C:/Users/phili/OneDrive/Documents/CPP_Projects/Game_PF/glfw_proj/CMakeFiles/ZERO_CHECK.dir
-C:/Users/phili/OneDrive/Documents/CPP_Projects/Game_PF/glfw_proj/src/CMakeFiles/glfw.dir
-C:/Users/phili/OneDrive/Documents/CPP_Projects/Game_PF/glfw_proj/src/CMakeFiles/update_mappings.dir
