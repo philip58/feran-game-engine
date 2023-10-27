@@ -23,7 +23,7 @@
 
 //symbol \ means it continues to next line
 //do not press space after \ because error will orccur 
-#define BEAVER_APPLICATION_START(ClassName) \
+#define FERAN_APPLICATION_START(ClassName) \
 int main()\
 {\
 	ClassName::Init();\
