@@ -2,34 +2,16 @@
 #include"glad/glad.h"
 #include"GLFW/glfw3.h"
 #include "pch.h"
+#include"../Utilities.h"
 
 namespace fr
 {
 	OpenGLShader::OpenGLShader(const std::string& vertexSF, const std::string& fragmentSF)
 	{
-		const char* vertexShaderSource = R"(
-			#version 330 core
-
-			layout (location = 0) in vec2 aPos;
-			layout (location = 1) in vec2 aTC;
-
-			out vec2 TexCoord;
-
-			void main()
-			{
-				gl_Position = vec4(aPos.x, aPos.y, 1.0, 1.0;
-				TexCoord = aTC;
-			}
-		)";
-
-		const char* fragmentShaderSource = R"(
-			#version 330 core
-			out vec4 FragColor;
-			void main()
-			{
-				FragColor= vec4(1.0f, 0.0f, 0.0f, 1.0f);
-			}
-		)";
+		std::string vertexString{ ReadWholeFile(vertexSF) };
+		const char* vertexShaderSource = vertexString.c_str();
+		std::string fragmentString{ ReadWholeFile(fragmentSF) };
+		const char* fragmentShaderSource =fragmentString.c_str();
 
 		unsigned int vertexShader;
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -59,16 +41,16 @@ namespace fr
 			FR_ERROR("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog);
 		}
 
-		unsigned int shaderProgram;
-		shaderProgram = glCreateProgram();
 
-		glAttachShader(shaderProgram, vertexShader);
-		glAttachShader(shaderProgram, fragmentShader);
-		glLinkProgram(shaderProgram);
+		mShaderProgram = glCreateProgram();
 
-		glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+		glAttachShader(mShaderProgram, vertexShader);
+		glAttachShader(mShaderProgram, fragmentShader);
+		glLinkProgram(mShaderProgram);
+
+		glGetProgramiv(mShaderProgram, GL_LINK_STATUS, &success);
 		if (!success) {
-			glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+			glGetProgramInfoLog(mShaderProgram, 512, NULL, infoLog);
 			FR_ERROR("Linking FAILED with the message/; " << infoLog);
 		}
 
@@ -76,8 +58,112 @@ namespace fr
 		glDeleteShader(fragmentShader);
 	}
 
+	OpenGLShader::OpenGLShader(std::string&& vertexSF, std::string&& fragmentSF)
+	{
+		std::string vertexString{ ReadWholeFile(move(vertexSF)) };
+		const char* vertexShaderSource = vertexString.c_str();
+		std::string fragmentString{ ReadWholeFile(move(fragmentSF)) };
+		const char* fragmentShaderSource = fragmentString.c_str();
+
+
+		unsigned int vertexShader;
+		vertexShader = glCreateShader(GL_VERTEX_SHADER);
+
+		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+		glCompileShader(vertexShader);
+
+		int  success;
+		char infoLog[512];
+		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+
+		if (!success)
+		{
+			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+			FR_ERROR("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog);
+		}
+
+		unsigned int fragmentShader;
+		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+		glCompileShader(fragmentShader);
+
+		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+		if (!success)
+		{
+			glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+			FR_ERROR("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog);
+		}
+
+
+		mShaderProgram = glCreateProgram();
+
+		glAttachShader(mShaderProgram, vertexShader);
+		glAttachShader(mShaderProgram, fragmentShader);
+		glLinkProgram(mShaderProgram);
+
+		glGetProgramiv(mShaderProgram, GL_LINK_STATUS, &success);
+		if (!success) {
+			glGetProgramInfoLog(mShaderProgram, 512, NULL, infoLog);
+			FR_ERROR("Linking FAILED with the message/; " << infoLog);
+		}
+
+		glDeleteShader(vertexShader);
+		glDeleteShader(fragmentShader);
+	}
+
+	OpenGLShader::~OpenGLShader()
+	{
+		glDeleteProgram(mShaderProgram);
+	}
+
 	void OpenGLShader::Bind()
 	{
 		glUseProgram(mShaderProgram);
+	}
+	void OpenGLShader::SetUniform2Ints(const std::string& uniformName, int val1, int val2)
+	{
+		glUseProgram(mShaderProgram);
+		GLint location{ glGetUniformLocation(mShaderProgram, uniformName.c_str())};
+		glUniform2i(location, val1, val2);
+	}
+
+	void OpenGLShader::SetUniform2Ints(std::string&& uniformName, int val1, int val2)
+	{
+		glUseProgram(mShaderProgram);
+		GLint location{ glGetUniformLocation(mShaderProgram, uniformName.c_str()) };
+		glUniform2i(location, val1, val2);
+	}
+
+	std::string OpenGLShader::ReadWholeFile(const std::string& fileName)
+	{
+		std::ifstream inputFile{ fileName };
+
+		std::string result;
+		std::string nextLine;
+
+		while(inputFile) 
+		{
+			std::getline(inputFile, nextLine);
+			result += nextLine;
+			result += "\n";
+		}
+
+		return result;
+	}
+	std::string OpenGLShader::ReadWholeFile(std::string&& fileName)
+	{
+		std::ifstream inputFile{ move(fileName) };
+
+		std::string result;
+		std::string nextLine;
+
+		while (inputFile)
+		{
+			std::getline(inputFile, nextLine);
+			result += nextLine;
+			result += "\n";
+		}
+
+		return result;
 	}
 }

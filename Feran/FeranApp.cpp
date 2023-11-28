@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "FeranApp.h"
-#include "../stbi/stb_image.h"
 #include "glad/glad.h"
+#include"GLFW/glfw3.h"
+#include "../stbi/stb_image.h"
+#include"Shader.h"
 
 namespace fr
 {
@@ -66,6 +68,10 @@ namespace fr
 		glEnableVertexAttribArray(1);
 
 		//unsigned char* data = stbi_load(FileSystem::getPath("resources/textures/container.jpg").c_str(), &width(), &height(), &nrChannels, 0);
+		/////////// Shaders  ///////////
+
+		fr::Shader shader("../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultFragmentShader.glsl");
+		shader.SetUniform2Ints("ScreenSize", 1000, 800);
 
 		/////////// Textures ///////////
 
@@ -97,6 +103,8 @@ namespace fr
 
 			glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			shader.Bind();
 
 			glUseProgram(shaderProgram);
 			glBindVertexArray(VAO);
