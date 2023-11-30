@@ -24,7 +24,7 @@ namespace fr
 
 	void GLFWImplementation::Create(const std::string& name, int width, int height)
 	{
-		mWindow = glfwCreateWindow(800, 600, "Game_PS", NULL, NULL);
+		mWindow = glfwCreateWindow(width, height, "Game_PS", NULL, NULL);
 
 		if (mWindow == NULL) {
 			FR_ERROR("Failed to create GLFW window");

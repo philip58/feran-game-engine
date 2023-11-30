@@ -10,6 +10,9 @@ namespace fr
 	template<typename T>
 	FeranApp<T>::FeranApp()
 	{
+		//mWindow.Create("Game PF", 1000, 800);
+		// //glad initialized here
+		//mRenderer.Init();
 	}
 	template<typename T>
 	void FeranApp<T>::Init()
@@ -25,8 +28,19 @@ namespace fr
 		sInstance->Run();
 	}
 	template<typename T>
-	void fr::FeranApp<T>::Run()
+	void FeranApp<T>::Run()
 	{
+		//fr::Shader shader("../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultFragmentShader.glsl");
+		//while(mshouldContinue){
+		// // clear screen
+		//	mRenderer.Clear();
+		//	shader.Bidn()
+		//	shader.SetUniform2Ints("ScreenSize",mWindow.GetWidth(), mWindow.GetHeight());
+		//	OnUpdate();
+		//	mWindow.SwapBuffers();
+		//	mWindow.PollEvents();
+		//...}
+	//}
 		mWindow.Create("Game PF", 1000, 800);
 
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -36,10 +50,10 @@ namespace fr
 		}
 
 		float vertices[] = {
-			-0.5f, -0.5f, 0.0f, 0.0f,
-			 0.5f, -0.5f, 1.0f, 0.0f,
-			-0.5f, 0.5f, 0.0f, 1.0f,
-			0.5f, 0.5f, 1.0f, 1.0f,
+			100.f, 100.f, 0.0f, 0.0f,
+			 300.f, 100.f, 1.0f, 0.0f,
+			100.f, 300.f, 0.0f, 1.0f,
+			300.f, 300.f, 1.0f, 1.0f,
 		};
 
 		unsigned int indices[] = {
@@ -59,12 +73,12 @@ namespace fr
 		unsigned int EBO;
 		glGenBuffers(1, &EBO);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vertices), indices, GL_STATIC_DRAW);
 
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
 
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)(2*sizeof(float)));
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2*sizeof(float)));
 		glEnableVertexAttribArray(1);
 
 		//unsigned char* data = stbi_load(FileSystem::getPath("resources/textures/container.jpg").c_str(), &width(), &height(), &nrChannels, 0);
@@ -74,20 +88,25 @@ namespace fr
 		shader.SetUniform2Ints("ScreenSize", 1000, 800);
 
 		/////////// Textures ///////////
-
+		// for testing picture (after shaders)
+		// fr::Picture pic("....");
+		// 
+		// picture
+		//create texture object
 		unsigned int texture;
-		glGenTexture(1, &texture);
+		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+		//load data into file
 		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
-		unsigned char* data = stbi_load("../Assets/Pictures/text.png", &width, &height, &nrChannels);
+		unsigned char* data = stbi_load("../Assets/Pictures/smile.png", &width, &height, &nrChannels, 0);
 
 		if (data) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGB, GL_UNSIGNED_BIT, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 		}
 		else
@@ -95,7 +114,11 @@ namespace fr
 			FR_ERROR("Failed to load a picture from the file!");
 		}
 
+		//create picture object
 		stbi_image_free(data);
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		while (mShouldContinue)
 		{
@@ -105,10 +128,11 @@ namespace fr
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			shader.Bind();
+			//pic.Bind();
 
 			glUseProgram(shaderProgram);
 			glBindVertexArray(VAO);
-			glDrawArray(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			glDrawArrays(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 			mWindow.SwapBuffers();
 			mWindow.PollEvents();
@@ -118,4 +142,10 @@ namespace fr
 	void FeranApp<T>::OnUpdate()
 	{
 	}
+
+	//template<typename T>
+	//	void FeranApp<T>::Draw(int x, int y, Picture& pic)
+	//{
+	//		mRenderer.Draw(100, 200, pic);
+	//}
 }

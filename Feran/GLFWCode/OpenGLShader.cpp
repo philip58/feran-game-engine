@@ -8,11 +8,17 @@ namespace fr
 {
 	OpenGLShader::OpenGLShader(const std::string& vertexSF, const std::string& fragmentSF)
 	{
+		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		{
+			FR_ERROR("Failed to initialize GLAD");
+			return;
+		}
+
 		std::string vertexString{ ReadWholeFile(vertexSF) };
 		const char* vertexShaderSource = vertexString.c_str();
 		std::string fragmentString{ ReadWholeFile(fragmentSF) };
 		const char* fragmentShaderSource =fragmentString.c_str();
-
+			
 		unsigned int vertexShader;
 		vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
@@ -123,7 +129,7 @@ namespace fr
 	void OpenGLShader::SetUniform2Ints(const std::string& uniformName, int val1, int val2)
 	{
 		glUseProgram(mShaderProgram);
-		GLint location{ glGetUniformLocation(mShaderProgram, uniformName.c_str())};
+		GLint location{ glGetUniformLocation(mShaderProgram, uniformName.c_str()) };
 		glUniform2i(location, val1, val2);
 	}
 
@@ -144,6 +150,9 @@ namespace fr
 		while(inputFile) 
 		{
 			std::getline(inputFile, nextLine);
+			if (!inputFile) {
+				break;
+			}
 			result += nextLine;
 			result += "\n";
 		}

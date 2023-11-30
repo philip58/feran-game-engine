@@ -15,6 +15,8 @@ namespace fr
 		void Run();
 		virtual void OnUpdate();
 
+		//void Draw(int x, int y, Picture& pic);
+
 		friend typename T;
 
 	private:
