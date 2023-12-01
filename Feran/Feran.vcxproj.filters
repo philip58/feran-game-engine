@@ -74,9 +74,6 @@
     <ClCompile Include="GLFWCode\GLFWImplementation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FeranApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

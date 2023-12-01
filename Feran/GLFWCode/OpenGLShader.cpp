@@ -1,7 +1,7 @@
+#include "pch.h"
 #include"OpenGLShader.h"
 #include"glad/glad.h"
 #include"GLFW/glfw3.h"
-#include "pch.h"
 #include"../Utilities.h"
 
 namespace fr

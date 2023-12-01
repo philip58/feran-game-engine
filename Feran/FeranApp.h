@@ -2,6 +2,7 @@
 
 #include "Utilities.h"
 #include"GameWindow.h"
+#include"Picture.h"
 
 namespace fr
 {
@@ -15,7 +16,7 @@ namespace fr
 		void Run();
 		virtual void OnUpdate();
 
-		//void Draw(int x, int y, Picture& pic);
+		void Draw(int x, int y, Picture& pic);
 
 		friend typename T;
 

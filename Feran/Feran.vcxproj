@@ -152,7 +152,6 @@
     <ClInclude Include="WindowImplementation.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FeranApp.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="GLFWCode\GLFWImplementation.cpp" />
     <ClCompile Include="GLFWCode\OpenGLRenderer.cpp" />

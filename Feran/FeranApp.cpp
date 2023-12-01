@@ -130,9 +130,9 @@ namespace fr
 			shader.Bind();
 			//pic.Bind();
 
-			glUseProgram(shaderProgram);
+			//glUseProgram(shaderProgram);
 			glBindVertexArray(VAO);
-			glDrawArrays(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 			mWindow.SwapBuffers();
 			mWindow.PollEvents();
@@ -144,7 +144,7 @@ namespace fr
 	}
 
 	//template<typename T>
-	//	void FeranApp<T>::Draw(int x, int y, Picture& pic)
+	//	void FeranApp<T>::Draw(int x, int y, Picture& pic)le
 	//{
 	//		mRenderer.Draw(100, 200, pic);
 	//}
