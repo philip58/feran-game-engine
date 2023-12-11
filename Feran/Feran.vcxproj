@@ -135,12 +135,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Events.h" />
     <ClInclude Include="FeranApp.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="GLFWCode\GLFWImplementation.h" />
+    <ClInclude Include="GLFWCode\OpenGLPicture.h" />
     <ClInclude Include="GLFWCode\OpenGLRenderer.h" />
     <ClInclude Include="GLFWCode\OpenGLShader.h" />
     <ClInclude Include="include\Feran.h" />
+    <ClInclude Include="Keys.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Picture.h" />
     <ClInclude Include="PictureImplementation.h" />
@@ -148,12 +151,15 @@
     <ClInclude Include="RendererImplementation.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderImplementation.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="WindowImplementation.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Events.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="GLFWCode\GLFWImplementation.cpp" />
+    <ClCompile Include="GLFWCode\OpenGLPicture.cpp" />
     <ClCompile Include="GLFWCode\OpenGLRenderer.cpp" />
     <ClCompile Include="GLFWCode\OpenGLShader.cpp" />
     <ClCompile Include="pch.cpp">
@@ -161,9 +167,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Picture.cpp" />
-    <ClCompile Include="placeholder.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\glad\glad.vcxproj">

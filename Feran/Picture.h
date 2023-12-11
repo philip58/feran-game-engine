@@ -8,13 +8,13 @@ namespace fr
 	class FERAN_API Picture
 	{
 	public:
-		Picture();
+		Picture(const std::string& pic);
+		Picture(std::string&& pic);
+
 		void Bind();
-		unsigned int GetHeight() const;
-		unsigned int GetWidth() const;
+		int GetHeight() const;
+		int GetWidth() const;
 	private:
-		unsigned int height;
-		unsigned int width;
 		std::unique_ptr<PictureImplementation> mImplementation;
 	};
 }

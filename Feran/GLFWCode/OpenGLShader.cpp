@@ -20,12 +20,12 @@ namespace fr
 		const char* fragmentShaderSource =fragmentString.c_str();
 			
 		unsigned int vertexShader;
-		vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		vertexShader = (glCreateShader(GL_VERTEX_SHADER));
 
 		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 		glCompileShader(vertexShader);
 
-		int  success;
+		int success;
 		char infoLog[512];
 		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 
@@ -47,6 +47,7 @@ namespace fr
 			FR_ERROR("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog);
 		}
 
+		int a = GLFW_KEY_1;
 
 		mShaderProgram = glCreateProgram();
 
@@ -78,7 +79,7 @@ namespace fr
 		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
 		glCompileShader(vertexShader);
 
-		int  success;
+		int success;
 		char infoLog[512];
 		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 

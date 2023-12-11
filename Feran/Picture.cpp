@@ -1,11 +1,29 @@
 #include"pch.h"
 #include"Picture.h"
+#include"GLFWCode/OpenGLPicture.h"
 
 namespace fr
 {
-	Picture::Picture()
+	Picture::Picture(const std::string& pic)
 	{
+#ifdef FERAN_MSCPP
+		mImplementation = std::unique_ptr<PictureImplementation>{ new OpenGLPicture(pic) };
+#elif FERAN_APPLE
+		mImplementation = std::unique_ptr<PictureImplementation>{ new OpenGLPicture(pic) };
+#elif
+		mImplementation = std::unique_ptr<PictureImplementation>{ new OpenGLPicture(pic) };
+#endif
+	}
 
+	Picture::Picture(std::string&& pic)
+	{
+#ifdef FERAN_MSCPP
+		mImplementation = std::unique_ptr<PictureImplementation>{ new OpenGLPicture(std::move(pic)) };
+#elif FERAN_APPLE
+		mImplementation = std::unique_ptr<PictureImplementation>{ new OpenGLPicture(std::move(pic)) };
+#elif
+		mImplementation = std::unique_ptr<PictureImplementation>{ new OpenGLPicture(std::move(pic)) };
+#endif
 	}
 
 	void Picture::Bind()
@@ -13,14 +31,14 @@ namespace fr
 		mImplementation->Bind();
 	}
 
-	unsigned int Picture::GetHeight() const
+	int Picture::GetHeight() const
 	{
-		return height;
+		return mImplementation->GetHeight();
 	}
 
-	unsigned int Picture::GetWidth() const
+	int Picture::GetWidth() const
 	{
-		return width;
+		return mImplementation->GetWidth();
 	}
 
 	

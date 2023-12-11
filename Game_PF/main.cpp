@@ -1,13 +1,45 @@
 #include "Feran.h"
 #include <iostream>
+#include "../Feran/Keys.h"
 
 class MyGame : public fr::FeranApp<MyGame>
 {
 public:
+	MyGame()
+	{
+		SetKeyPressedCallback([this](const fr::KeyPressed& e) {OnKeyPress(e); });
+	}
+
 	virtual void OnUpdate() override
 	{
-		std::cout << "Feran running" << std::endl;
+		//std::cout << "Feran running" << std::endl;
+
+		//Draw(x, y, mPic);
+		
+		//new
+		Draw(mUnit);
 	}
+
+	void OnKeyPress(const fr::KeyPressed& e)
+	{
+		
+		if (e.GetKeyCode() == FERAN_KEY_RIGHT)
+		{
+			mUnit.UpdateXCoord(50);
+		} 
+		else if(e.GetKeyCode() == FERAN_KEY_LEFT)
+		{
+			 mUnit.UpdateYCoord(50);
+		}
+		
+	}
+
+private:
+	fr::Picture mPic{ "../Assets/Pictures/smile.png" };
+	fr::Unit mUnit{ "../Assets/Pictures/smile.png", 100, 500 };
+
+	int x{ 100 };
+	int y{ 100 };
 };
 
 FERAN_APPLICATION_START(MyGame);

@@ -140,6 +140,9 @@
     <ProjectReference Include="..\glad\glad.vcxproj">
       <Project>{70535004-5350-4e83-a2eb-8d21ef5e333c}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\glfw_proj\src\glfw.vcxproj">
+      <Project>{ce65f2e8-cc97-386e-b957-8df724aecd4a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\stbi\stbi.vcxproj">
       <Project>{298f2f9b-4e7d-4cb4-a2f9-d5b4da506da0}</Project>
     </ProjectReference>
