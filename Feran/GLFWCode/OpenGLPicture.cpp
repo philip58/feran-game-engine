@@ -17,7 +17,6 @@ namespace fr
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		//load data into file
-		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
 		unsigned char* data = stbi_load("../Assets/Pictures/smile.png", &width, &height, &nrChannels, 0);
 
@@ -32,9 +31,6 @@ namespace fr
 
 		//create picture object
 		stbi_image_free(data);
-
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	OpenGLPicture::OpenGLPicture(std::string&& pic)
@@ -47,7 +43,6 @@ namespace fr
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		//load data into file
-		int width, height, nrChannels;
 		stbi_set_flip_vertically_on_load(true);
 		unsigned char* data = stbi_load("../Assets/Pictures/smile.png", &width, &height, &nrChannels, 0);
 
@@ -62,9 +57,6 @@ namespace fr
 
 		//create picture object
 		stbi_image_free(data);
-
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	OpenGLPicture::~OpenGLPicture()
@@ -79,11 +71,11 @@ namespace fr
 
 	int OpenGLPicture::GetWidth() const
 	{
-		return 0;
+		return width;
 	}
 
 	int OpenGLPicture::GetHeight() const
 	{
-		return 0;
+		return height;
 	}
 }

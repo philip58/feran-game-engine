@@ -16,5 +16,6 @@ namespace fr
 
 	private:
 		unsigned int mPictureProgram;
+		int width, height, nrChannels;
 	};
 }
