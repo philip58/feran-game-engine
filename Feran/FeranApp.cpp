@@ -2,7 +2,6 @@
 #include "FeranApp.h"
 #include"Utilities.h"
 #include"../Feran/include/Feran.h"
-#include "glad/glad.h"
 #include"GLFW/glfw3.h"
 #include "../stbi/stb_image.h"
 #include"Shader.h"
