@@ -67,9 +67,9 @@ namespace fr
 
 	OpenGLShader::OpenGLShader(std::string&& vertexSF, std::string&& fragmentSF)
 	{
-		std::string vertexString{ ReadWholeFile(move(vertexSF)) };
+		std::string vertexString{ ReadWholeFile(std::move(vertexSF)) };
 		const char* vertexShaderSource = vertexString.c_str();
-		std::string fragmentString{ ReadWholeFile(move(fragmentSF)) };
+		std::string fragmentString{ ReadWholeFile(std::move(fragmentSF)) };
 		const char* fragmentShaderSource = fragmentString.c_str();
 
 

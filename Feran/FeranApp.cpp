@@ -109,6 +109,7 @@ namespace fr
 	template<typename T>
 	void FeranApp<T>::Draw(Unit& item)
 	{
+		mRenderer.Draw(item.GetXCoord(), item.GetYCoord(), item.mImage);
 	}
 
 	template<typename T>

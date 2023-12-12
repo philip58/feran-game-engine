@@ -9,7 +9,6 @@ namespace fr
 {
 	OpenGLPicture::OpenGLPicture(const std::string& pic)
 	{
-		unsigned int texture;
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -18,10 +17,10 @@ namespace fr
 
 		//load data into file
 		stbi_set_flip_vertically_on_load(true);
-		unsigned char* data = stbi_load("../Assets/Pictures/smile.png", &width, &height, &nrChannels, 0);
+		unsigned char* data = stbi_load(pic.c_str(), &width, &height, &nrChannels, 0);
 
 		if (data) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 		}
 		else
@@ -35,7 +34,6 @@ namespace fr
 
 	OpenGLPicture::OpenGLPicture(std::string&& pic)
 	{
-		unsigned int texture;
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -44,10 +42,10 @@ namespace fr
 
 		//load data into file
 		stbi_set_flip_vertically_on_load(true);
-		unsigned char* data = stbi_load("../Assets/Pictures/smile.png", &width, &height, &nrChannels, 0);
+		unsigned char* data = stbi_load(std::move(pic.c_str()), &width, &height, &nrChannels, 0);
 
 		if (data) {
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 			glGenerateMipmap(GL_TEXTURE_2D);
 		}
 		else
@@ -61,12 +59,12 @@ namespace fr
 
 	OpenGLPicture::~OpenGLPicture()
 	{
-		glDeleteProgram(mPictureProgram);
+		glDeleteTextures(GL_TEXTURE_2D, &texture);
 	}
 
 	void OpenGLPicture::Bind()
 	{
-		glUseProgram(mPictureProgram);
+		glBindTexture(GL_TEXTURE_2D, texture);
 	}
 
 	int OpenGLPicture::GetWidth() const

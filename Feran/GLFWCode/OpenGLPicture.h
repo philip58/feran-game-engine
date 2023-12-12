@@ -15,7 +15,7 @@ namespace fr
 		virtual int GetHeight() const override;
 
 	private:
-		unsigned int mPictureProgram;
 		int width, height, nrChannels;
+		unsigned int texture;
 	};
 }

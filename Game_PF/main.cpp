@@ -1,6 +1,5 @@
 #include "Feran.h"
 #include <iostream>
-#include "../Feran/Keys.h"
 
 class MyGame : public fr::FeranApp<MyGame>
 {
@@ -23,7 +22,7 @@ public:
 	void OnKeyPress(const fr::KeyPressed& e)
 	{
 		
-		if (e.GetKeyCode() == FERAN_KEY_RIGHT)
+		if(e.GetKeyCode() == FERAN_KEY_RIGHT)
 		{
 			mUnit.UpdateXCoord(50);
 		} 
@@ -36,10 +35,8 @@ public:
 
 private:
 	fr::Picture mPic{ "../Assets/Pictures/smile.png" };
-	fr::Unit mUnit{ "../Assets/Pictures/smile.png", 100, 500 };
+	fr::Unit mUnit{ "../Assets/Pictures/smile.png", 300, 300 };
 
-	int x{ 100 };
-	int y{ 100 };
 };
 
 FERAN_APPLICATION_START(MyGame);
