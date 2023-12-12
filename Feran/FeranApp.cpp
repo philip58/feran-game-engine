@@ -103,19 +103,19 @@ namespace fr
 	template<typename T>
 	void FeranApp<T>::Draw(int x, int y, Picture& pic)
 	{
-		mRenderer.Draw(x, y, pic);
+		sInstance->mRenderer.Draw(x, y, pic);
 	}
 
 	template<typename T>
 	void FeranApp<T>::Draw(Unit& item)
 	{
-		mRenderer.Draw(item.GetXCoord(), item.GetYCoord(), item.mImage);
+		sInstance->mRenderer.Draw(item.GetXCoord(), item.GetYCoord(), item.mImage);
 	}
 
 	template<typename T>
 	void FeranApp<T>::SetKeyPressedCallback(std::function<void(const KeyPressed&)> callbackFunc)
 	{
-		//mWindow.SetKeyPressedCallback(callbackFunc);
+		mWindow.SetKeyPressedCallback(callbackFunc);
 	}
 
 	template<typename T>

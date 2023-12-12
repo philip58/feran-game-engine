@@ -22,17 +22,17 @@ namespace fr
 		glfwPollEvents();
 	}
 
-	void GLFWImplementation::SetKeyPressedCallback(std::function<void(const KeyPressed&)> callbackFunc)
+	void GLFWImplementation::SetKeyPressedCallback(std::function<void(const KeyPressed&)>& callbackFunc)
 	{
 		mCallbacks.keyPressedFunc = callbackFunc;
 	}
 
-	void GLFWImplementation::SetKeyReleasedCallback(std::function<void(const KeyReleased&)> callbackFunc)
+	void GLFWImplementation::SetKeyReleasedCallback(std::function<void(const KeyReleased&)>& callbackFunc)
 	{
 		mCallbacks.keyReleasedFunc = callbackFunc;
 	}
 
-	void GLFWImplementation::SetWindowCloseCallback(std::function<void()> callbackFunc)
+	void GLFWImplementation::SetWindowCloseCallback(std::function<void()>& callbackFunc)
 	{
 		mCallbacks.windowCloseFunc = callbackFunc;
 	}

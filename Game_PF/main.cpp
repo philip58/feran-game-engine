@@ -21,14 +21,14 @@ public:
 
 	void OnKeyPress(const fr::KeyPressed& e)
 	{
-		
+		std::cout <<e.GetKeyCode() << std::endl;
 		if(e.GetKeyCode() == FERAN_KEY_RIGHT)
 		{
 			mUnit.UpdateXCoord(50);
 		} 
 		else if(e.GetKeyCode() == FERAN_KEY_LEFT)
 		{
-			 mUnit.UpdateYCoord(50);
+			mUnit.UpdateXCoord(-50);
 		}
 		
 	}
