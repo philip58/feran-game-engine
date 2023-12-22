@@ -17,7 +17,6 @@ set(HEADER_FILES
 	ShaderImplementation.h
 	Unit.h
 	Keys.h
-	MyGame.h
 )
 
 set(SOURCE_FILES
