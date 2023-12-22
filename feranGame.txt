@@ -1,0 +1,10 @@
+This is an in space flying and avoiding asteroids game. 
+You move with WASD W for up, A for left, S for down and D for right. 
+You can also shoot laser projectiles with the left, right, up and down arrow keys.
+Asteroids are falling down and you have to avoid them. 
+If you get hit you catch fire. Once they all fall down and you reach the end you will be safe and have won.
+
+Unique features: 
+Fast/smooth movement with up down left right and diagonal movement.
+Shooting projectiles that move independently.
+Randomization of moving obstacles that the player must avoid.
