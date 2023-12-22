@@ -1,6 +1,6 @@
 #include "Feran.h"
 #include <iostream>
-#include"../MyGame.h"
+#include"../Game_PF/MyGame.h"
 
 FERAN_APPLICATION_START(MyGame);
 

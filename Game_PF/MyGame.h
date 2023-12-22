@@ -1,12 +1,12 @@
 #pragma once
-#include "pch.h"
-#include "FeranApp.h"
-#include "Utilities.h"
-#include"Shader.h"
-#include"Picture.h"
-#include"Events.h"
-#include"Unit.h"
-#include"Keys.h"
+#include "../pch.h"
+#include "../FeranApp.h"
+#include "../Utilities.h"
+#include"../Shader.h"
+#include"../Picture.h"
+#include"../Events.h"
+#include"../Unit.h"
+#include"../Keys.h"
 
 class MyGame : public fr::FeranApp<MyGame>
 {
@@ -189,11 +189,11 @@ public:
 		}
 	}
 
-	private:
+private:
 	fr::Unit gameOverScreen{ "../Assets/Pictures/gameover.png", 0, 0 };
 	fr::Unit background{ "../Assets/Pictures/galaxy.png", 0, 0 };
 	fr::Unit player{ "../Assets/Pictures/ship.png", 450, 300 };
-	fr::Unit fire{ "../Assets/Pictures/fire.png", player.GetXCoord()-100, player.GetYCoord()-100};
+	fr::Unit fire{ "../Assets/Pictures/fire.png", player.GetXCoord() - 100, player.GetYCoord() - 100 };
 	std::vector<fr::Unit> units;
 	std::vector<fr::Unit> projectiles;
 	std::vector<std::string> projectileDirection;
@@ -202,4 +202,3 @@ public:
 	bool upPressed = false;
 	bool downPressed = false;
 };
-
