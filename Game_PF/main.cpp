@@ -38,8 +38,8 @@ FERAN_APPLICATION_START(MyGame);
 #define FERAN_APPLICATION_START(ClassName) \
 int main()\
 {\
-	MyGame();\
-	MyGame::OnUpdate();\
+	ClassName();\
+	ClassName::OnUpdate();\
 	ClassName::Init();\
 	ClassName::RunInterface();\
 	return(0);\
