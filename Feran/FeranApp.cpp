@@ -37,7 +37,7 @@ namespace fr
 	void FeranApp<T>::Run()
 	{
 		fr::Shader shader("../Assets/Shaders/DefaultVertexShader.glsl", "../Assets/Shaders/DefaultFragmentShader.glsl");
-		fr::Picture pic{ "../Assets/Pictures/smile.png" };
+		fr::Picture pic{ "../Assets/Pictures/ship.png" };
 		mNextFrameTime = std::chrono::steady_clock::now();
 		
 		while(mShouldContinue)
