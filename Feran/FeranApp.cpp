@@ -13,7 +13,7 @@ namespace fr
 	template<typename T>
 	FeranApp<T>::FeranApp()
 	{
-		mWindow.Create("Game PF", 1000, 800);
+		mWindow.Create("Game PF", 1920, 1080);
 		//glad initialized here
 		mRenderer.Init();
 

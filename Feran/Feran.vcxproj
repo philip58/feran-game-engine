@@ -144,6 +144,7 @@
     <ClInclude Include="GLFWCode\OpenGLShader.h" />
     <ClInclude Include="include\Feran.h" />
     <ClInclude Include="Keys.h" />
+    <ClInclude Include="MyGame.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Picture.h" />
     <ClInclude Include="PictureImplementation.h" />
